@@ -103,15 +103,15 @@ amigosDe (u, (r:rs), ps) user | longitud rs == 0 && not (estaEnUnaRelacion r use
                               | otherwise                                          = amigosDe (u, rs, ps) user
 
 estaEnUnaRelacion :: Relacion -> Usuario -> Bool
-estaEnUnaRelacion (u1, u2) user = nombreDeUsuario u1 == nombreDeUsuario user || nombreDeUsuario u2 == nombreDeUsuario user
+estaEnUnaRelacion (u1, u2) user = idDeUsuario u1 == idDeUsuario user || idDeUsuario u2 == idDeUsuario user
 
 userRelacionado :: Relacion -> Usuario -> Usuario
-userRelacionado (u1, u2) user | nombreDeUsuario u1 == nombreDeUsuario user = u2
-                              | nombreDeUsuario u2 == nombreDeUsuario user = u1
+userRelacionado (u1, u2) user | idDeUsuario u1 == idDeUsuario user = u2
+                              | idDeUsuario u2 == idDeUsuario user = u1
 
 -- describir qué hace la función: .....
 cantidadDeAmigos :: RedSocial -> Usuario -> Int
-cantidadDeAmigos = undefined
+cantidadDeAmigos rs us = fromIntegral (longitud (amigosDe rs us))
 
 -- describir qué hace la función: .....
 usuarioConMasAmigos :: RedSocial -> Usuario
