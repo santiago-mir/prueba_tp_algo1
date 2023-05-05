@@ -16,6 +16,7 @@ usuario2 = (2, "Natalia")
 usuario3 = (3, "Pedro")
 usuario4 = (4, "Mariela")
 usuario5 = (5, "Natalia")
+usuario6 = (6, "Pepito")
 
 
 relacion1_2 = (usuario1, usuario2)
@@ -24,6 +25,7 @@ relacion1_4 = (usuario4, usuario1) -- Notar que el orden en el que aparecen los 
 relacion2_3 = (usuario3, usuario2)
 relacion2_4 = (usuario2, usuario4)
 relacion3_4 = (usuario4, usuario3)
+relacion4_6 = (usuario4, usuario6)
 
 publicacion1_1 = (usuario1, "Este es mi primer post", [usuario2, usuario4])
 publicacion1_2 = (usuario1, "Este es mi segundo post", [usuario4])
@@ -44,7 +46,7 @@ publicacion4_3 = (usuario4, "Just kidding, i am Mariela", [usuario1, usuario3])
 
 
 usuariosA = [usuario1, usuario2, usuario3, usuario4]
-relacionesA = [relacion1_2, relacion1_4, relacion2_3, relacion2_4, relacion3_4]
+relacionesA = [relacion1_2, relacion1_4, relacion2_3, relacion2_4, relacion3_4, relacion4_6]
 publicacionesA = [publicacion1_1, publicacion1_2, publicacion2_1, publicacion2_2, publicacion3_1, publicacion3_2, publicacion4_1, publicacion4_2]
 redA = (usuariosA, relacionesA, publicacionesA)
 
@@ -113,17 +115,37 @@ userRelacionado (u1, u2) user | idDeUsuario u1 == idDeUsuario user = u2
 cantidadDeAmigos :: RedSocial -> Usuario -> Int
 cantidadDeAmigos rs us = fromIntegral (longitud (amigosDe rs us))
 
+ 
 -- describir qué hace la función: .....
-usuarioConMasAmigos :: RedSocial -> Usuario
-usuarioConMasAmigos = undefined
 
+
+tieneMasAmigos :: RedSocial -> Usuario -> Bool
+tieneMasAmigos ((u:us), rs, ps) user | longitud us == 0 && cantidadDeAmigos red u <= cantidadDeAmigos red user = True
+                                     | cantidadDeAmigos red u <= cantidadDeAmigos red user = tieneMasAmigos (us, rs, ps) user
+                                     | otherwise = False
+                                      where red = ((u:us), rs, ps) 
+
+
+usuarioConMasAmigos :: RedSocial -> Usuario
+usuarioConMasAmigos ((u:us), rs, ps) | longitud us == 0 = u
+                                     | tieneMasAmigos ((u:us), rs, ps) u = u
+                                     | otherwise                         = usuarioConMasAmigos (us, rs, ps)
+                                     
 -- describir qué hace la función: .....
 estaRobertoCarlos :: RedSocial -> Bool
-estaRobertoCarlos = undefined
+estaRobertoCarlos ((u:us), rs, ps) | longitud us == 0 && cantidadDeAmigos red u < 1000000 = False
+                                   | cantidadDeAmigos red u > 1000000 = True
+                                   | cantidadDeAmigos red u < 1000000 = estaRobertoCarlos (us, rs, ps) 
+                                    where red = ((u:us), rs, ps) 
+                                   
+
 
 -- describir qué hace la función: .....
 publicacionesDe :: RedSocial -> Usuario -> [Publicacion]
-publicacionesDe = undefined
+publicacionesDe (us, rs, (p:ps)) user | longitud ps == 0 && usuarioDePublicacion p == user = [p]
+                                      | longitud ps == 0 && not (usuarioDePublicacion p == user) = []
+                                      | usuarioDePublicacion p == user = p : publicacionesDe (us, rs, ps) user
+                                      | otherwise = publicacionesDe (us, rs, ps) user
 
 -- describir qué hace la función: .....
 publicacionesQueLeGustanA :: RedSocial -> Usuario -> [Publicacion]
