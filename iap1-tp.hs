@@ -1,4 +1,3 @@
-module Solucion where
 -- Completar con los datos del grupo
 --
 -- Nombre de Grupo: xx
@@ -118,6 +117,10 @@ pertenece y (x:xs)
     | length xs == 0 = y == x
     | otherwise = y == x || pertenece y xs
 
+-- Dada una lista, devuelve la misma en orden invertido
+reverso :: [t] -> [t]
+reverso [] = []
+reverso (x:xs) = reverso xs ++ [x]
 
 -- Dada una lista, devuelve la misma lista dejando un único elemento por cada elemento distinto que tiene
 quitarRepetidos :: (Eq t) => [t] -> [t]
@@ -140,7 +143,7 @@ quitarRepetidos (x:xs)
 
 -- describir qué hace la función: ..... Devuelve una lista con los nombres de usuario (sin id) de cada usuario en la red
 nombresDeUsuarios :: RedSocial -> [String]
-nombresDeUsuarios red = quitarRepetidos(nombresDeUsuariosAux (usuarios red) [])
+nombresDeUsuarios red = reverso (quitarRepetidos (nombresDeUsuariosAux (usuarios red) []))
     where   nombresDeUsuariosAux :: [Usuario] -> [String] -> [String]
             nombresDeUsuariosAux (user:users) nombres
                 | length users == 0 = nombre : nombres
@@ -220,7 +223,7 @@ tieneUnSeguidorFiel red user
             cicloPorUsuario [] us = longitud us >= 1 -- Solo tiene una publicación, es true si y solo si tiene likes
             cicloPorUsuario pubs (u:us)
                 | longitud us == 0 = tieneUnSeguidorFielAux pubs u
-                | otherwise = tieneUnSeguidorFielAux pubs u && cicloPorUsuario pubs us
+                | otherwise = tieneUnSeguidorFielAux pubs u || cicloPorUsuario pubs us
             tieneUnSeguidorFielAux :: [Publicacion] -> Usuario -> Bool
             tieneUnSeguidorFielAux (p:pub) u
                 | longitud pub == 0 = pertenece u (likesDePublicacion p)
