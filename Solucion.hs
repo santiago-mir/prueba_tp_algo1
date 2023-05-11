@@ -1,3 +1,4 @@
+module Solucion where
 -- Completar con los datos del grupo
 --
 -- Nombre de Grupo: Grupo.hs
