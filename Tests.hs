@@ -31,19 +31,24 @@ tests = test [
 
 testsNombresDeUsuario = test [
     "Red con varios usuarios, sin nombres repetidos" ~: (Implementacion.nombresDeUsuarios redA) ~?= ["Juan","Natalia","Pedro","Mariela"],
+    -- Ejemplo de test: "descripcion ~: (Implementacion.nombresDeUsuarios red) ~?= [ListaDeNombresDeUsuarios]
 ]
 
 testsAmigosDe = [
     "Red con varios usuarios, usuario con varios amigos" ~: (Implementacion.amigosDe redA usuario1) ~?= [usuario2, usuario4],
+    -- Ejemplo de test: "descripcion" ~: (Implementacion.amigosDe red usuario) ~?= [listaDeUsuarios],
 ]
 
 
 testsCantidadDeAmigos = [
     "Red con varios usuarios, usuario con varios amigos" ~: (Implementacion.cantidadDeAmigos redA usuario1) ~?= 2,
+    -- Ejemplo de test: "descripcion" ~: (Implementacion.cantidadDeAmigos red usuario) ~?= Int,
 ]
 
 testsUsuarioConMasAmigos = [
     "Red con varios usuarios, 2 con la mayor cantidad de amigos" ~: expectAny (Implementacion.usuarioConMasAmigos redA) [usuario2, usuario4],
+    -- Ejemplo de test: "descripcion" ~: (Implementacion.usuarioConMasAmigos red) ~?= usuario
+    -- Ejemplo de test: "descripcion" ~: expectAny (Implementacion.usuarioConMasAmigos red) [ListaDePosiblesUsuarios],
 ]
 
 
