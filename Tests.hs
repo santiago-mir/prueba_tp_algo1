@@ -73,3 +73,32 @@ publicacionesB = [publicacion1_3, publicacion1_4, publicacion1_5, publicacion3_1
 redB = (usuariosB, relacionesB, publicacionesB)
 
 
+usuario6 = (6, "José")
+usuario7 = (7, "Manuel")
+usuario8 = (8, "Esteban")
+usuario9 = (9, "Juana")
+
+relacion1_6 = (usuario1, usuario6)
+relacion1_7 = (usuario1, usuario7)
+relacion1_8 = (usuario1, usuario8)
+relacion1_9 = (usuario1, usuario9)
+
+relacion2_6 = (usuario2, usuario6)
+relacion2_7 = (usuario2, usuario7)
+relacion2_8 = (usuario2, usuario8)
+relacion2_9 = (usuario2, usuario9)
+
+relacion3_6 = (usuario3, usuario6)
+relacion3_7 = (usuario3, usuario7)
+relacion3_8 = (usuario3, usuario8)
+relacion3_9 = (usuario3, usuario9)
+
+relacion4_6 = (usuario4, usuario6)
+relacion4_7 = (usuario4, usuario7)
+relacion4_8 = (usuario4, usuario8)
+relacion4_9 = (usuario4, usuario9)
+
+relacion5_6 = (usuario5, usuario6)
+relacion5_7 = (usuario5, usuario7)
+relacion5_8 = (usuario5, usuario8)
+relacion5_9 = (usuario5, usuario9)
