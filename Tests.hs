@@ -51,6 +51,10 @@ testsUsuarioConMasAmigos = [
     -- Ejemplo de test: "descripcion" ~: expectAny (Implementacion.usuarioConMasAmigos red) [ListaDePosiblesUsuarios],
 ]
 
+testEstaRobertoCarlos = [
+    "Red con usuarios, pero ninguno con suficientes amigos" ~: (Implementacion.estaRobertoCarlos redA) ~?= False,
+    "Red sin usuarios" ~: (Implementacion.estaRobertoCarlos redVacia) ~?= False,
+]
 
 
 usuario4 = (4, "Mariela")
@@ -89,6 +93,8 @@ relacionesB = [relacion1_2, relacion2_3]
 publicacionesB = [publicacion1_3, publicacion1_4, publicacion1_5, publicacion3_1, publicacion3_2, publicacion3_3]
 redB = (usuariosB, relacionesB, publicacionesB)
 
+redVacia = ([()], [()], [()])
+
 
 usuario6 = (6, "José")
 usuario7 = (7, "Manuel")
@@ -108,10 +114,7 @@ relacion2_9 = (usuario2, usuario9)
 relacion3_6 = (usuario3, usuario6)
 relacion3_7 = (usuario3, usuario7)
 relacion3_8 = (usuario3, usuario8)
-relacion3_9 = (usuario3, usuario9)usuario6 = (6, "José")
-usuario7 = (7, "Manuel")
-usuario8 = (8, "Esteban")
-usuario9 = (9, "Juana")
+relacion3_9 = (usuario3, usuario9)
 
 relacion1_6 = (usuario1, usuario6)
 relacion1_7 = (usuario1, usuario7)
