@@ -26,16 +26,28 @@ tests = test [
 
     " tieneUnSeguidorFiel 1" ~: (Implementacion.tieneUnSeguidorFiel redA usuario1) ~?= True,
 
-    " existeSecuenciaDeAmigos 1" ~: (Implementacion.existeSecuenciaDeAmigos redA usuario1 usuario3) ~?= True
- ]
+    " existeSecuenciaDeAmigos 1" ~: (Implementacion.existeSecuenciaDeAmigos redA usuario1 usuario2) ~?= True,
+]
 
-expectAny actual expected = elem actual expected ~? ("expected any of: " ++ show expected ++ "\n but got: " ++ show actual)
+testsNombresDeUsuario = test [
+    "Red con varios usuarios, sin nombres repetidos" ~: (Implementacion.nombresDeUsuarios redA) ~?= ["Juan","Natalia","Pedro","Mariela"],
+]
 
--- Ejemplos
+testsAmigosDe = [
+    "Red con varios usuarios, usuario con varios amigos" ~: (Implementacion.amigosDe redA usuario1) ~?= [usuario2, usuario4],
+]
 
-usuario1 = (1, "Juan")
-usuario2 = (2, "Natalia")
-usuario3 = (3, "Pedro")
+
+testsCantidadDeAmigos = [
+    "Red con varios usuarios, usuario con varios amigos" ~: (Implementacion.cantidadDeAmigos redA usuario1) ~?= 2,
+]
+
+testsUsuarioConMasAmigos = [
+    "Red con varios usuarios, 2 con la mayor cantidad de amigos" ~: expectAny (Implementacion.usuarioConMasAmigos redA) [usuario2, usuario4],
+]
+
+
+
 usuario4 = (4, "Mariela")
 usuario5 = (5, "Natalia")
 relacion1_2 = (usuario1, usuario2)
@@ -91,6 +103,24 @@ relacion2_9 = (usuario2, usuario9)
 relacion3_6 = (usuario3, usuario6)
 relacion3_7 = (usuario3, usuario7)
 relacion3_8 = (usuario3, usuario8)
+relacion3_9 = (usuario3, usuario9)usuario6 = (6, "José")
+usuario7 = (7, "Manuel")
+usuario8 = (8, "Esteban")
+usuario9 = (9, "Juana")
+
+relacion1_6 = (usuario1, usuario6)
+relacion1_7 = (usuario1, usuario7)
+relacion1_8 = (usuario1, usuario8)
+relacion1_9 = (usuario1, usuario9)
+
+relacion2_6 = (usuario2, usuario6)
+relacion2_7 = (usuario2, usuario7)
+relacion2_8 = (usuario2, usuario8)
+relacion2_9 = (usuario2, usuario9)
+
+relacion3_6 = (usuario3, usuario6)
+relacion3_7 = (usuario3, usuario7)
+relacion3_8 = (usuario3, usuario8)
 relacion3_9 = (usuario3, usuario9)
 
 relacion4_6 = (usuario4, usuario6)
@@ -101,4 +131,20 @@ relacion4_9 = (usuario4, usuario9)
 relacion5_6 = (usuario5, usuario6)
 relacion5_7 = (usuario5, usuario7)
 relacion5_8 = (usuario5, usuario8)
+
+relacion4_6 = (usuario4, usuario6)
+relacion4_7 = (usuario4, usuario7)
+relacion4_8 = (usuario4, usuario8)
+relacion4_9 = (usuario4, usuario9)
+
+relacion5_6 = (usuario5, usuario6)
+relacion5_7 = (usuario5, usuario7)
+relacion5_8 = (usuario5, usuario8)
 relacion5_9 = (usuario5, usuario9)
+
+publicacion5_1 = (usuario5, "", [])
+publicacion5_2 = (usuario5, "", [usuario5])
+publicacion5_3 = (usuario5, "", [usuario1, usuario2])
+publicacion5_4 = (usuario5, "Hola", [usuario4])
+publicacion5_1 = (usuario5, "Denme like", [usuario1, usuario2,usuario3,usuario4,usuario5,usuario6,usuario7,usuario8,usuario9])
+
